@@ -15,6 +15,7 @@ stats=false
 
 del=()=>{
     ctx.clearRect(0,0,sign.width,sign.height)
+    image = new Image()
 }
 
 
@@ -37,15 +38,20 @@ sign.addEventListener("mouseup",()=>{
     stats=false
     image = new Image()
     image.src=sign.toDataURL('image/png')
+    console.log(image)
 })
 
 save=()=>{
+    try{image}catch{
+        alert("Please sign on the designated area!")
+    }
     octx.clearRect(0,0,optimized.width,optimized.height)
     octx.drawImage(image,0,0,optimized.width,optimized.height)
     visual = octx.getImageData(0,0,optimized.width,optimized.height).data
     visual=check_location(visual)
-    console.log(visual.length)
-    location.href="https://docs.google.com/forms/d/e/1FAIpQLSccAXUYVIFVddCCVnmTI05ec9T9VjQiN_8XYnpzLxJ_h8GVuQ/viewform?usp=pp_url&entry.1586501361="+visual
+    console.log(visual)
+    visual.length>20?
+        location.href="https://docs.google.com/forms/d/e/1FAIpQLSccAXUYVIFVddCCVnmTI05ec9T9VjQiN_8XYnpzLxJ_h8GVuQ/viewform?usp=pp_url&entry.1586501361="+visual:alert("Please sign on the designated area!")
 }
 
 check_location=(imageData)=>{
