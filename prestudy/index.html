@@ -30,5 +30,20 @@
     </div>
     <canvas id="optimized" style="display: none;"></canvas>
     <script src="script.js"></script>
+    <script >
+        ZIn=()=>{
+            for(data of Consent){
+                data.width*=1.1
+                data.height*=1.1
+            }
+        }
+        
+        ZOut=()=>{
+            for(data of Consent){
+                data.width/=1.1
+                data.height/=1.1
+            }
+        }
+    </script>
 </body>
 </html>
