@@ -3,6 +3,10 @@ ctx=sign.getContext("2d")
 optimized=document.getElementById("optimized")
 octx=optimized.getContext("2d")
 
+Consent=document.querySelectorAll("img")
+for(data of Consent){
+    data.width*=0.3
+}
 
 sign.width=window.innerWidth*0.98
 sign.height=window.innerHeight*0.9
@@ -39,6 +43,8 @@ sign.addEventListener("mouseup",()=>{
     image = new Image()
     image.src=sign.toDataURL('image/png')
     console.log(image)
+    console.log(new Date().toString())
+
 })
 
 save=()=>{
@@ -50,8 +56,23 @@ save=()=>{
     visual = octx.getImageData(0,0,optimized.width,optimized.height).data
     visual=check_location(visual)
     console.log(visual)
-    visual.length>20?
-        location.href="https://docs.google.com/forms/d/e/1FAIpQLSccAXUYVIFVddCCVnmTI05ec9T9VjQiN_8XYnpzLxJ_h8GVuQ/viewform?usp=pp_url&entry.1586501361="+visual:alert("Please sign on the designated area!")
+    if (visual.length>20){
+        let url="https://script.google.com/macros/s/AKfycbw416H14BhOPTJdq7yI94CU90Knjz1dv2VUsj2VIS14oTM0A9_0WenvJVuewTuCyULhCw/exec"
+        let spt= image.src.split("base64,")
+        let obj={
+            base64:spt[1],
+            type:spt[0],
+            name:new Date().toString()
+        }
+        fetch(url,{
+            method:"POST",
+            body:JSON.stringify(obj)
+        })
+        .then(r=>r.text())
+        .then(data=>console.log(data))
+        .then(location.href="https://cityuhk.questionpro.com/t/Ab82mZ5n2a")
+    }
+    else{alert("Please sign on the designated area!")}
 }
 
 check_location=(imageData)=>{
@@ -74,4 +95,18 @@ check_location=(imageData)=>{
 
 success=()=>{
     console.log(visual.length)
+}
+
+ZIn=()=>{
+    for(data of Consent){
+        data.width*=1.1
+        data.height*=1.1
+    }
+}
+
+ZOut=()=>{
+    for(data of Consent){
+        data.width/=1.1
+        data.height/=1.1
+    }
 }
