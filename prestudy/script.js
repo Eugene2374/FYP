@@ -96,17 +96,3 @@ check_location=(imageData)=>{
 success=()=>{
     console.log(visual.length)
 }
-
-ZIn=()=>{
-    for(data of Consent){
-        data.width*=1.1
-        data.height*=1.1
-    }
-}
-
-ZOut=()=>{
-    for(data of Consent){
-        data.width/=1.1
-        data.height/=1.1
-    }
-}
