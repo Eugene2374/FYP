@@ -3,10 +3,7 @@ ctx=sign.getContext("2d")
 optimized=document.getElementById("optimized")
 octx=optimized.getContext("2d")
 
-Consent=document.querySelectorAll("img")
-for(data of Consent){
-    data.width*=0.3
-}
+Consent=document.getElementById("Info")
 
 sign.width=window.innerWidth*0.98
 sign.height=window.innerHeight*0.9
@@ -98,15 +95,9 @@ success=()=>{
 }
 
 ZIn=()=>{
-    for(data of Consent){
-        data.width*=1.1
-        data.height*=1.1
-    }
+    Consent.style.width=(parseInt(Consent.style.width.slice(0,2))*1.1).toString()+"%"
 }
 
 ZOut=()=>{
-    for(data of Consent){
-        data.width/=1.1
-        data.height/=1.1
-    }
+    Consent.style.width=(parseInt(Consent.style.width.slice(0,2))/1.1).toString()+"%"
 }
