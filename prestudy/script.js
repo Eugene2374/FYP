@@ -5,8 +5,8 @@ octx=optimized.getContext("2d")
 
 Consent=document.getElementById("Info")
 
-sign.width=window.innerWidth*0.98
-sign.height=window.innerHeight*0.9
+sign.width=window.innerWidth*0.97
+sign.height=window.innerHeight*0.8
 
 ctx.fillStyle="#ddd"
 ctx.strokeStyle='#ddd'
@@ -42,6 +42,14 @@ sign.addEventListener("pointerup",()=>{
     console.log(image)
     console.log(new Date().toString())
 
+})
+
+sign.addEventListener("pointerenter",()=>{
+  document.body.style.overflow="hidden"  
+})
+
+sign.addEventListener("pointerleave",()=>{
+  document.body.style.overflow="scroll"  
 })
 
 save=()=>{
