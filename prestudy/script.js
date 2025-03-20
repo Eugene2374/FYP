@@ -20,21 +20,21 @@ del=()=>{
 }
 
 
-sign.addEventListener("mousedown",(event)=>{
+sign.addEventListener("pointerdown",(event)=>{
     stats=true;
     mouse={"x":event.clientX-5,"y":event.clientY-50}
     ctx.fillRect(mouse["x"],mouse["y"],15,15)
     record=setInterval(()=>{},25)
 })
 
-sign.addEventListener("mousemove",(event)=>{if(stats){
+sign.addEventListener("pointermove",(event)=>{if(stats){
     record=setTimeout(()=>{
         mouse={"x":event.clientX-5,"y":event.clientY-50}
         ctx.fillRect(mouse["x"],mouse["y"],15,15)
     },25)
 }})
 
-sign.addEventListener("mouseup",()=>{
+sign.addEventListener("pointerup",()=>{
     clearTimeout(record)
     stats=false
     image = new Image()
