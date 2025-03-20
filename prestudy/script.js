@@ -20,6 +20,30 @@ del=()=>{
 }
 
 
+sign.addEventListener("touchstart",(event)=>{
+    stats=true;
+    mouse={"x":event.clientX-5,"y":event.clientY-50}
+    ctx.fillRect(mouse["x"],mouse["y"],15,15)
+    record=setInterval(()=>{},25)
+})
+
+sign.addEventListener("touchmove",(event)=>{if(stats){
+    record=setTimeout(()=>{
+        mouse={"x":event.clientX-5,"y":event.clientY-50}
+        ctx.fillRect(mouse["x"],mouse["y"],15,15)
+    },25)
+}})
+
+sign.addEventListener("touchend",()=>{
+    clearTimeout(record)
+    stats=false
+    image = new Image()
+    image.src=sign.toDataURL('image/png')
+    console.log(image)
+    console.log(new Date().toString())
+
+})
+
 sign.addEventListener("pointerdown",(event)=>{
     stats=true;
     mouse={"x":event.clientX-5,"y":event.clientY-50}
@@ -44,13 +68,6 @@ sign.addEventListener("pointerup",()=>{
 
 })
 
-sign.addEventListener("pointerenter",()=>{
-  document.body.style.overflow="hidden"  
-})
-
-sign.addEventListener("pointerleave",()=>{
-  document.body.style.overflow="scroll"  
-})
 
 save=()=>{
     try{image}catch{
